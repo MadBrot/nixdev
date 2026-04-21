@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs, 
   email,
   name,
   ...
@@ -48,7 +48,7 @@
     fastfetch
     ripgrep
     eza
-    fd
+    fd,
   ];
 
   xdg.configFile."ghostty/config.ghostty".text = ''

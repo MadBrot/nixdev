@@ -1,9 +1,9 @@
 {
   homes = [
     {
-      username = "kilian.mayer";
-      name = "Kilian Mayer";
-      email = "kilian.mayer@example.com";
+      username = "leon.stoelt";
+      name = "Leon Stoelt";
+      email = "leon.stoelt@example.com";
       justTmuxSetup = false;
     }
   ];
