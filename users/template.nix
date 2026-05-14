@@ -28,6 +28,15 @@
   ];
 
   programs.zsh.initContent = ''
+    if [[ -S "$SSH_AUTH_SOCK" ]]; then
+      :
+    else
+      export SSH_AUTH_SOCK="$HOME/.ssh/agent"
+    fi
+
+    export SSH_SK_PROVIDER=/usr/local/lib/libsk-libfido2.dylib
+    export PATH="$HOME/.local/bin:$PATH"
+
     hms() {
       if [ -z "''${1:-}" ]; then
         echo "Usage: hms <flake_ref>"

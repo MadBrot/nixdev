@@ -22,6 +22,12 @@
     nixfmt
     nixd
 
+    # node
+    nodejs
+    
+    # php 
+    php 
+
     # yarn v4
     yarn-berry
   ];
