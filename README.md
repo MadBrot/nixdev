@@ -15,7 +15,7 @@ This flake currently manages:
 - `vscode` settings and extensions
 - a small set of desktop apps and CLI tools (spotify, obsidian, google chrome)
 
-The generated Home Manager configurations come from `config/local.nix`. Each entry in
+The generated Home Manager configurations come from `config/user.nix`. Each entry in
 `homes` becomes a flake output under `homeConfigurations.<username>`.
 
 ## Requirements
@@ -29,7 +29,7 @@ The generated Home Manager configurations come from `config/local.nix`. Each ent
 ### 1. Install Nix and enable flakes
 
 ```sh
-sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install)
+sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --daemon
 mkdir -p ~/.config/nix
 echo 'experimental-features = nix-command flakes' >> ~/.config/nix/nix.conf
 ```
@@ -41,7 +41,7 @@ git clone <repo-url> nixdev
 cd nixdev
 ```
 
-### 3. Edit user.nix config to 
+### 3. Edit the user config
 
 Edit `config/user.nix` and set your real values:
 
@@ -62,7 +62,7 @@ If you only want the tmux tooling on a machine, set `justTmuxSetup = true`.
 
 ### 4. Apply the Home Manager config
 
-Run the switch command with the username from `config/local.nix`:
+Run the switch command with the username from `config/user.nix`:
 
 ```sh
 nix run nixpkgs#home-manager -- switch --flake PROJECT_DIR#your.username --impure -b backup
@@ -83,6 +83,10 @@ tmux
 ## Common Workflows
 
 ### Rebuild after changes
+
+This is a Git flake, so new files must be tracked before Nix can see them. If you add
+files under `config/nvim`, `moduls`, or any other flake source path, run `git add` for
+those files before switching.
 
 ```sh
 nix run nixpkgs#home-manager -- switch --flake PROJECT_DIR#your.username --impure -b backup
@@ -132,6 +136,10 @@ tdl cx ccli
 ## Project Layout
 
 - `flake.nix`: flake entrypoint and Home Manager output generation
-- `config/example.nix`: sample machine/profile definition
+- `config/user.nix`: user/profile definitions used to create `homeConfigurations`
 - `moduls/`: Home Manager modules for shell, tmux, Neovim, Starship, VS Code, and tools
 - `config/nvim/`: bundled Neovim configuration
+
+## Fixes
+
+- sudo sh -c 'echo ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" >> /etc/zprofile'

@@ -5,23 +5,6 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
-
-    extraPackages = with pkgs; [
-      # lua
-      lua-language-server
-
-      # nix
-      nil
-
-      # typescript
-      typescript-language-server
-
-      # php
-      phpactor
-
-      # bash
-      bash-language-server
-    ];
   };
 
   # lazygit and lazydocker for terminal git and docker management, respectively
