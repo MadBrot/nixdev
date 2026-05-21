@@ -5,6 +5,7 @@ return {
       preview = true,
       width_focus = 30,
       width_preview = 50,
+      max_number = 30,
     },
     options = {
       use_as_default_explorer = true,
@@ -38,6 +39,20 @@ return {
         require("mini.files").open(vim.uv.cwd(), true)
       end,
       desc = "Explorer (cwd)",
+    },
+    {
+      "<leader>fm",
+      function()
+        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+      end,
+      desc = "Mini Files (Current File Dir)",
+    },
+    {
+      "<leader>fM",
+      function()
+        require("mini.files").open(vim.uv.cwd(), true)
+      end,
+      desc = "Mini Files (cwd)",
     },
   },
 }
