@@ -1,6 +1,6 @@
 return {
   "okuuva/auto-save.nvim",
-  event = { "InsertLeave", "TextChanged" },
+  event = { "InsertLeave" },
   opts = {
     enabled = true,
     execution_message = {
@@ -8,7 +8,7 @@ return {
     },
     trigger_events = {
       immediate_save = { "BufLeave", "FocusLost" },
-      defer_save = { "InsertLeave", "TextChanged" },
+      defer_save = { "InsertLeave" },
       cancel_deferred_save = { "InsertEnter" },
     },
     condition = function(buf)
