@@ -1,1 +1,3 @@
 /config/local.nix
+.DS_Store
+.idea
