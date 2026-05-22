@@ -13,25 +13,12 @@ return {
   },
   keys = {
     {
-      "<leader>fe",
-      function()
-        require("mini.files").open(vim.fn.getcwd(), true)
-      end,
-      desc = "Explorer (Root Dir)",
-    },
-    {
-      "<leader>fE",
-      function()
-        require("mini.files").open(vim.uv.cwd(), true)
-      end,
-      desc = "Explorer (cwd)",
-    },
-    {
       "<leader>e",
       function()
-        require("mini.files").open(vim.fn.getcwd(), true)
+        local file = vim.api.nvim_buf_get_name(0)
+        require("mini.files").open(file ~= "" and file or vim.uv.cwd(), true)
       end,
-      desc = "Explorer (Root Dir)",
+      desc = "Explorer (Current File)",
     },
     {
       "<leader>E",
@@ -39,20 +26,6 @@ return {
         require("mini.files").open(vim.uv.cwd(), true)
       end,
       desc = "Explorer (cwd)",
-    },
-    {
-      "<leader>fm",
-      function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
-      end,
-      desc = "Mini Files (Current File Dir)",
-    },
-    {
-      "<leader>fM",
-      function()
-        require("mini.files").open(vim.uv.cwd(), true)
-      end,
-      desc = "Mini Files (cwd)",
     },
   },
 }
