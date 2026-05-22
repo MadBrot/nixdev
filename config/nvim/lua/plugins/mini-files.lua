@@ -1,5 +1,6 @@
 return {
   "nvim-mini/mini.files",
+  lazy = false,
   opts = {
     windows = {
       preview = true,
@@ -16,7 +17,12 @@ return {
       "<leader>e",
       function()
         local file = vim.api.nvim_buf_get_name(0)
-        require("mini.files").open(file ~= "" and file or vim.uv.cwd(), true)
+
+        if file == "" or vim.bo.buftype ~= "" or file:match("^minifiles:") then
+          require("mini.files").open(vim.uv.cwd(), true)
+        end
+
+        require("mini.files").open(file, true)
       end,
       desc = "Explorer (Current File)",
     },
