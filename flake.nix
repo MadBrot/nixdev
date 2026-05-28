@@ -29,6 +29,8 @@
           username,
           name,
           email,
+          privateName,
+          privateEmail,
           justTmuxSetup ? false,
         }:
         home-manager.lib.homeManagerConfiguration {
@@ -38,7 +40,7 @@
           };
 
           extraSpecialArgs = {
-            inherit name email justTmuxSetup;
+            inherit name email privateName privateEmail justTmuxSetup;
           };
 
           modules = [
